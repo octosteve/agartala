@@ -25,7 +25,15 @@ config :agartala, AgartalaWeb.Endpoint,
   secret_key_base: "Hrx2mN8fJEcfPs+5VJ8Y82lAqKBit0KtF4alWvbvpiHEZHUfp/IFOns2mFLQ9EVi",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    npx: [
+      "tailwindcss",
+      "--input=css/app.css",
+      "--output=../priv/static/assets/app.css",
+      "--postcss",
+      "--watch",
+      cd: Path.expand("../assets", __DIR__)
+    ]
   ]
 
 # ## SSL Support
